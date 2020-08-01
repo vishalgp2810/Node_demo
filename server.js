@@ -12,10 +12,6 @@ router.get('/',function(req,res) {
     })
 });
 
-router.get('/file1',function(req,res) {
-   res.send('Hellow from file1');
-});
-
 app.get('/file', (req, res) => {
   fs.readFile('index.html', null, (err, res)=> {
     if(err) res.status(400).json({Message: 'Error while finding file'});
