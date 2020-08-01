@@ -4,6 +4,7 @@
   "description": "First EC2 demo app",
   "main": "index.js",
   "scripts": {
+    "nodemon": "echo \"Error: no test specified\" && exit 1"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,5 +12,17 @@
     "url": "git@github.com-vishalgp2810:vishalgp2810/Node_demo.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.725.0",
+    "axios": "^0.19.2",
+    "concurrently": "^5.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
+  }
 }
