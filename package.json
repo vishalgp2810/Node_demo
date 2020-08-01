@@ -11,5 +11,8 @@
     "url": "git@github.com-vishalgp2810:vishalgp2810/Node_demo.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
