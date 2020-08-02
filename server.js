@@ -1,32 +1,53 @@
-const port = 8000
-const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const express = require("express");
 const app = express();
-const path = require('path');
+const port = 8000;
 const router = express.Router();
-const fs = require('fs');
-const html = require('./index.html');
 
-router.get('/',function(req,res) {
-    fs.readFile('index.html', null, (err, res)=> {
-      if(err) res.status(400).json({Message: 'Error while finding file'});
-    })
+app.use("/", router);
+app.use(bodyParser.json());
+
+const User = mongoose.model("person", {
+  firs_name: {
+     type: String,
+     required: false
+   },
+   last_name: {
+     type: String,
+     required: false
+   },
+   email_id: {
+     type: String,
+     required: false
+   },
+   phone_number: {
+     type: String,
+     required: false
+   }
 });
 
-app.get('/file', (req, res) => {
-  fs.readFile('index.html', null, (err, res)=> {
-    if(err) res.status(400).json({Message: 'Error while finding file'});
-    res.render(res)
-  });
+app.post("/person", async (req, res) => {
+  console.log(req.body);
+    try {
+        const person = new User(req.body);
+        const result = await person.save();
+        res.send(result);
+    } catch (error) {
+      return res.status(400).send({error: 'Error while adding data',error});
+    }
 });
 
-router.get('/about', (req,res) => {
-     res.send('Hellow from about');
+const url = 'mongodb+srv://vishal1234:vishal1234@cluster0.l0qbg.mongodb.net/<dbname>?retryWrites=true&w=majority';
+
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
+
+const connection = mongoose.connection;
+
+connection.once("open", function() {
+  console.log("mongoose database connection established successfully");
 });
 
-router.get('/sitemap',function(req,res){
-  res.sendFile(path.join(__dirname+'/sitemap.html'));
+app.listen(port, function() {
+  console.log("Server is running on Port: " + port);
 });
-
-//add the router
-app.use('/', router);
-app.listen(port, () => console.log(` app is running on port => :: ${port}`));
