@@ -1,6 +1,6 @@
 const app = require('express');
 const router = router = express.Router();
-cont bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.post('/user', (ewq, res) => {
