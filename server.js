@@ -10,7 +10,15 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  res.render('view')
+  const array = [
+    {
+      name: 'vishal',
+      name: 'vishal',
+      name: 'vishal',
+      name: 'vishal',
+    }
+  ]
+  res.render('view', { array });
 })
 
 const User = mongoose.model("person", {
